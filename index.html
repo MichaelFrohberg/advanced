@@ -3,48 +3,100 @@
 <!-- ASD 1305 -->
 <!-- HTML Template -->
 <!-- Tue, May 7 -->
-
-<html>
+<html lang="en">
 <head>
-	<title>Gigs</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <title>Gig</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
 </head>
 <body>
-<section data-role="dialog" id="launch">
-    <div data-role="header">
-        <a href="#home" data-role="button" data-theme="">Find A Gig</a>
-        <a href="#home" data-role="button" data-theme="">Post A Gig</a>
-    </div>
+<section data-role="page" id="browse">
+    <header data-role="header">
+        <h1>Gigs</h1>
+    </header>
+    <article data-role="content">
+        <img class="actionCall" src="images/gig.png" />
+        <ul data-role="listview" id="list" data-inset="true" data-filter="true">
+            <li data-role="fieldcontain" data-theme="b">
+                <a href="#">Music Gigs</a>
+            </li>
+            <li data-role="fieldcontain" data-theme="b">
+                <a href="#">Writing Gigs</a>
+            </li>
+            <li data-role="fieldcontain" data-theme="b">
+                <a href="#">Photo Gigs</a>
+            </li>
+            <li data-role="fieldcontain" data-theme="b">
+                <a href="#">Acting Gigs</a>
+            </li>
+            <li data-role="fieldcontain" data-theme="b">
+                <a href="#">Newest Gigs</a>
+            </li>
+        </ul>
+    </article>
+    <footer data-role="footer" data-position="fixed">
+        <nav data-role="navbar">
+            <ul>
+                <li><a href="#postGig">Post a Gig</a></li>
+                <li><a href="#">About Me</a></li>
+                <li><a href="#">Links</a></li>
+            </ul>
+        </nav>
+    </footer>
 </section>
-<section data-role="page" id="home">
-	<header data-role="header">
-		<h1>Gigs</h1>
-		<nav data-role="navbar">
-			<ul>
-				 <li><a href="#">item1</a></li>
-				 <li><a href="#">item2</a></li>
-				 <li><a href="#">item3</a></li>
-			</ul>
-		</nav>
-	</header><!-- /header -->
-	<article data-role="content">
-		<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.</p>
-		<ul data-role="listview">
-			<li><a href="#">item1</a></li>
-			<li><a href="#">item2</a></li>
-			<li><a href="#">item3</a></li>
-			<li><a href="#">item4</a></li>
-            <li><a href="#">item5</a></li>
-		</ul>
-	</article><!-- /content -->
-	<footer data-role="footer">
-		<h4>Page footer</h4>
-	</footer><!-- /footer -->
-</section><!-- /page -->
+<section data-role="page" id="postGig">
+    <header data-role="header">
+        <h1>Gigs</h1>
+    </header>
+    <article data-role="content">
+        <a href="#browse">
+            <img class="actionCall" src="images/gig.png" alt="back to browse"/>
+        </a>
+        <form id="gigPosts" action="#">
+            <h2>Post A Gig</h2>
+            <fieldset data-role="collapsible" data-theme="b">
+                <legend>Gig Details</legend>
+                <label for="gig-select" class="select">Gig Type:</label>
+                <select name="gig-select" data-inline="true" data-native="true" id="gig-select">
+                    <option>Please Choose:</option>
+                    <option value="music">Music Gigs</option>
+                    <option value="write">Writer Gigs</option>
+                    <option value="photo">Photo Gigs</option>
+                    <option value="acting">Acting Gigs</option>
+                </select>
+                <label for="date">Gig Date:</label>
+                <input type="date" data-inline="true" name="date" id="date">
+            </fieldset>
+            <fieldset data-role="collapsible" data-theme="b" data-content-theme="d">
+                <label for="gigTitle">Contact Name:</label>
+                <input type="text" data-inline="true" name="gigTitle" id="gigName"/>
+                <div data-role="controlgroup" data-mini="true">
+                    <legend>Vertical, icon right, mini sized:</legend>
+                    <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="on">
+                    <label for="radio-choice-v-6a">One</label>
+                    <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
+                    <label for="radio-choice-v-6b">Two</label>
+                    <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="other">
+                    <label for="radio-choice-v-6c">Three</label>
+                </div>
+            </fieldset>
+        </form>
+    </article>
+    <footer data-role="footer" data-position="fixed">
+        <nav data-role="navbar">
+            <ul>
+                <li> <a href="#browse">Find a Gig</a> </li>
+                <li> <a href="#">About Me</a> </li>
+                <li> <a href="#">Links</a> </li>
+            </ul>
+        </nav>
+    </footer>
+</section>
+            
 </body>
 </html>

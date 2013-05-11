@@ -1,12 +1,12 @@
 
-$('#launch').on('pageinit', function(e) {
-	$.mobileChangePage();
+$('#browse').on('pageinit', function(e) {
 	e.preventDefault();
 	
 	})
 $('#home').on('pageinit', function() {
-	$('#submit').on('click', function(event) {
-        event.preventDefault();
+	$('li').on('click', function(e) {
+        alert($.this.html());
+        e.stopPropagation();
 		// Act on the event
 	});
-})
+});
