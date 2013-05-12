@@ -20,24 +20,33 @@
         <h1>Gigs</h1>
     </header>
     <article data-role="content">
-        <img class="actionCall" src="images/gig.png" />
+        <img class="actionCall" src="images/gig.png" alt="Gig Image"/>
         <ul data-role="listview" id="list" data-inset="true" data-filter="true">
-            <li data-role="fieldcontain" data-theme="b">
-                <a href="#">Music Gigs</a>
-            </li>
-            <li data-role="fieldcontain" data-theme="b">
-                <a href="#">Writing Gigs</a>
-            </li>
-            <li data-role="fieldcontain" data-theme="b">
-                <a href="#">Photo Gigs</a>
-            </li>
-            <li data-role="fieldcontain" data-theme="b">
-                <a href="#">Acting Gigs</a>
-            </li>
-            <li data-role="fieldcontain" data-theme="b">
-                <a href="#">Newest Gigs</a>
-            </li>
-        </ul>
+            <li><a href="#">
+            <h2>Computer Gigs</h2>
+            <p>Small Web design, Tech support, etc projects</p>           
+            </a></li>
+            <li><a href="#">
+            <h2>Creative Gigs</h2>
+            <p>Small Design, Photography, Illustration Projects</p>           
+            </a></li>
+            <li><a href="#">
+            <h2>Crew Gigs</h2>
+            <p>Low budget Film/Theatre Opportunities </p>           
+            </a></li>            
+            <li><a href="#">
+            <h2>Event Gigs</h2>
+            <p>Promotions, Catering, Wedding Photography, etc</p>           
+            </a></li>
+            <li><a href="#">
+            <h2>Talent Gigs</h2>
+            <p>Acting, Modeling, Music, Dance, etc,</p>           
+            </a></li>
+            <li><a href="#">
+            <h2>Writing Gigs</h2>
+            <p>Includes Editing & Translation</p>           
+            </a></li>
+                    </ul>
     </article>
     <footer data-role="footer" data-position="fixed">
         <nav data-role="navbar">
@@ -51,40 +60,87 @@
 </section>
 <section data-role="page" id="postGig">
     <header data-role="header">
+    <a href="#" data-icon="delete">Clear</a>
         <h1>Gigs</h1>
+     <a href="#" data-icon="bars">Display</a>
     </header>
     <article data-role="content">
         <a href="#browse">
             <img class="actionCall" src="images/gig.png" alt="back to browse"/>
         </a>
         <form id="gigPosts" action="#">
-            <h2>Post A Gig</h2>
-            <fieldset data-role="collapsible" data-theme="b">
-                <legend>Gig Details</legend>
-                <label for="gig-select" class="select">Gig Type:</label>
+        	
+            <h2>Gig Details</h2>
+            <fieldset data-role="fieldcontain">
+                    <label for="paid">Paid Gig:</label>
+                    <select name="paid" id="paid" data-role="slider">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                    </select>
+             </fieldset>
+            
+            <fieldset data-role="fieldcontain">
+               <label for="gig-select" class="ui-hidden-accessible">Gig Type:</label>
                 <select name="gig-select" data-inline="true" data-native="true" id="gig-select">
-                    <option>Please Choose:</option>
-                    <option value="music">Music Gigs</option>
-                    <option value="write">Writer Gigs</option>
-                    <option value="photo">Photo Gigs</option>
-                    <option value="acting">Acting Gigs</option>
+                    <option>Please choose a category:</option>
+                    <option value="music">Computer Gigs</option>
+                    <option value="write">Creative Gigs</option>
+                    <option value="photo">Crew Gigs</option>
+                    <option value="acting">Event Gigs</option>
+                    <option value="acting">Talent Gigs</option>
+                    <option value="acting">Writing Gigs</option>
                 </select>
-                <label for="date">Gig Date:</label>
-                <input type="date" data-inline="true" name="date" id="date">
-            </fieldset>
-            <fieldset data-role="collapsible" data-theme="b" data-content-theme="d">
-                <label for="gigTitle">Contact Name:</label>
-                <input type="text" data-inline="true" name="gigTitle" id="gigName"/>
-                <div data-role="controlgroup" data-mini="true">
-                    <legend>Vertical, icon right, mini sized:</legend>
-                    <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a" value="on">
-                    <label for="radio-choice-v-6a">One</label>
-                    <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b" value="off">
-                    <label for="radio-choice-v-6b">Two</label>
-                    <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c" value="other">
-                    <label for="radio-choice-v-6c">Three</label>
+              </fieldset>
+              <fieldset data-role="fieldcontain">
+              	<div data-role="controlgroup" data-mini="true">
+                    <input type="radio" name="manhattan" id="manhattan" value="manhattan" checked="checked">
+                    <label for="manhattan">Manhattan</label>
+                    <input type="radio" name="brooklyn" id="brooklyn" value="brooklyn">
+                    <label for="brooklyn">Brooklyn</label>
+                    <input type="radio" name="queens" id="queens" value="queens">
+                    <label for="queens">Queens</label>
+                    <input type="radio" name="bronx" id="bronx" value="bronx">
+                    <label for="bronx">Bronx</label>
+                    <input type="radio" name="staten_island" id="staten_island" value="staten island">
+                    <label for="staten_island">Staten Island</label>
                 </div>
-            </fieldset>
+              </fieldset>
+              
+              <fieldset data-role="fieldcontain">
+              	<p>Date:</p>              
+              	<label for="date" class="ui-hidden-accessible">Date:</label>
+                   <input type="date" data-clear-btn="true" name="date" id="date" value=""
+                   placeholder="mm/dd/yyyy">
+              </fieldset>
+              <fieldset data-role="fieldcontain">
+              	<p>Post Title:</p>  
+                <label for="post" class="ui-hidden-accessible"></label>
+                <input type="text" data-inline="true" name="post" id="post" placeholder="Please include a title for this post">
+               </fieldset>
+               <fieldset data-role="fieldcontain"> 
+               <p>Please provide the details</p>               
+               <label for="description" class="ui-hidden-accessible">Textarea:</label>
+                   <textarea cols="40" rows="8" name="decription" id="description" placeholder="Please describe the gig in detail"></textarea>
+               </fieldset>
+               <fieldset data-role="fieldcontain">
+               	<p>Your Name</p>  
+               	<label for="name" class="ui-hidden-accessible"></label>
+                <input type="text" data-inline="true" name="name" id="name" placeholder="Please include your name"/>
+                </fieldset>
+               <fieldset data-role="fieldcontain">
+               	<p>Your Email</p>  
+            		<label for="email" class="ui-hidden-accessible"></label>
+                <input type="email" data-inline="true" name="email" id="email" placeholder="Please include your email address"/>
+                </fieldset>
+                <fieldset data-role="fieldcontain">
+                	<p>Your Number</p>  
+                	<label for="phone" class="ui-hidden-accessible"></label>
+                 <input type="tel" data-inline="true" name="phone" id="phone" placeholder="(212) 555-1212"/>
+                 </fieldset>
+                
+              	
+              	 
+           
         </form>
     </article>
     <footer data-role="footer" data-position="fixed">
