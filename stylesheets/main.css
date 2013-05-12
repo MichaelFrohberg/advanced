@@ -6,7 +6,8 @@
     height: auto;
     padding: 0;
     text-align:center;
-}
+		display: inline;
+	}
 #list {
     margin-top: 40px;
 }
