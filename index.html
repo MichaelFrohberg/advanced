@@ -59,7 +59,7 @@
     </footer>
 </section>
 <section data-role="page" id="postGig">
-    <header data-role="header">
+    <header data-role="header" data-position="fixed">
     <a href="#" data-icon="delete">Clear</a>
         <h1>Gigs</h1>
      <a href="#" data-icon="bars">Display</a>
@@ -69,11 +69,12 @@
             <img class="actionCall" src="images/gig.png" alt="back to browse"/>
         </a>
         <form id="gigPosts" action="#">
-            
+        	
             <h2>Gig Details</h2>
+            <div id="options">
             <fieldset data-role="fieldcontain">
                     <label for="paid">Paid Gig:</label>
-                    <select name="paid" id="paid" data-role="slider">
+                    <select name="paid" id="paid" data-role="slider"data-mini="true">
                         <option value="no">No</option>
                         <option value="yes">Yes</option>
                     </select>
@@ -105,7 +106,9 @@
                     <label for="staten_island">Staten Island</label>
                 </div>
               </fieldset>
-              
+              </div>
+              <div id="text">
+                          
               <fieldset data-role="fieldcontain">
               	<p>Date:</p>              
               	<label for="date" class="ui-hidden-accessible">Date:</label>
@@ -137,9 +140,14 @@
                 	<label for="phone" class="ui-hidden-accessible"></label>
                  <input type="tel" data-inline="true" name="phone" id="phone" placeholder="(212) 555-1212"/>
                  </fieldset>
-                
-              	
-              	 
+                </div> 
+                <div id="buttons">                
+                <p>
+              	<input type="submit" data-inline="true" data-theme="b" value="Submit Button" />
+              	<input type="reset"data-inline="true" value="Reset">
+								</p>
+            	 </div>
+
            
         </form>
     </article>
