@@ -13,10 +13,12 @@
     <link rel="stylesheet" href="stylesheets/main.css" />
     <!--Head Scripts -->
     <script src="js/libs/jquery.js"></script>
-    <script src="js/libs/jquery.validate.min.js"></script>
+    <!--<script src="js/libs/jquery.validate.min.js"></script>
     
     <script src="js/libs/mustache.js"></script>
-    <script src="js/libs/jquery.mustache.js"></script>
+    <script src="js/libs/jquery.mustache.js"></script> -->
+    <script src="xhr/gigs.json"></script>
+    <script src="js/json.js"></script>
 </head>
 <body>
   <section data-role="page" id="browse">
@@ -24,7 +26,9 @@
       <h1>Gigs</h1>
     </header>
     <article data-role="content">
-      <img class="actionCall" src="stylesheets/images/gig.png" alt="Gig Image"/>
+      <div id='gigpic'>
+        <a href="#browse"><img src="stylesheets/images/gig.png" alt="back to browse"/></a>
+      </div>
       <ul data-role="listview" id="list" data-inset="true" data-filter="true">
         <li><a href="#">
         <h2>Computer Gigs</h2>
@@ -69,9 +73,9 @@
       <a href="#" id="display" data-icon="bars">Display</a>
     </header>
     <article data-role="content">
-      <a href="#browse">
-        <img class="actionCall" src="stylesheets/images/gig.png" alt="back to browse"/>
-      </a>
+      <div id='gigpic'>
+        <a href="#browse"><img src="stylesheets/images/gig.png" alt="back to browse"/></a>
+      </div>
       <form id="gig-form" class="needsValid" action="#">
         <h2>Gig Details</h2>
         <div id="options">
@@ -146,8 +150,15 @@
             <input type="submit" data-inline="true" data-theme="b" id="submit" value="Submit Button" />
             <input type="reset" data-inline="true" value="Reset">
   				</p>
+          <p>
+            <a href="#" data-role="button" data-inline="true" id="jsonData">Display w/ JSON</a>
+            <a href="#" data-role="button" data-inline="true" id="yamlData">Display w/ YAML</a>
+          </p> 
         </div>
       </form>
+      <div>
+        <ul data-role="listview" id="results"></ul>
+      </div>
     </article>
     <footer data-role="footer" data-position="fixed">
       <nav data-role="navbar">
