@@ -50,7 +50,7 @@ $("#addItem").on("pageinit",  function(){
         autoFillData()
       } else { 
       for (var i = 0; i < localStorage.length; i++) {
-        $("#results").append("<ul data-role='listview'></ul><li>");
+        $("#results").append("<ul data-role='listview' data-inset='true'></ul><li>");
         var key = localStorage.key(i)
         var value = localStorage.getItem(key)
         var object = JSON.parse(value);
@@ -72,7 +72,42 @@ $("#addItem").on("pageinit",  function(){
           $("#results").listview("refresh");
         }
       }
+      
     }
+    function editItem() {
+      $("#edit").on('click', function(e) {
+        e.preventDefault();
+        $.mobile.changePage()
+        var value = localStorage.getItem(this.key)
+        var item = JSON.parse(value);
+        $.each(item, function(k, v) {
+        $(item).val($(this).item.v[1])
+         /*  $("#gig-select")val($(this).item.v[1])
+          $("#options")val($(this).item.v[1])
+          $("#date")val($(this).item.v[1])
+          $("#post")val($(this).item.v[1])
+          $("#details")val($(this).item.v[1])
+          $("#name")val($(this).item.v[1])
+          $("#email")val($(this).item.v[1])
+          $("#phone")val($(this).item.v[1]) */
+          })
+      })
+    }
+    function deleteItem() {
+      $("#delete").on('click', 'updatelayout', function(e) {
+        e.preventDefault();
+        var ask = confirm("Are you sure you want to delete?");
+        if(ask === true) {
+          localStorage.clear
+          alert("Entry Deleted")
+          window.location.reload();
+          } else {
+          alert ("Entry Not Deleted")
+         
+          }
+      })
+    }
+
     // Events
     
 
@@ -89,10 +124,10 @@ $("#addItem").on("pageinit",  function(){
         displayLocal();
     });
     
-    $("#c").on("click", function(e) {
+    $("#clear").on("click", function(e) {
         e.preventDefault();
         e.stopPropagation();
-        displayLocal();
+        clearLocal();
     });
 
 
