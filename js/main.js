@@ -58,41 +58,33 @@ $("#addItem").on("pageinit",  function(){
            var txt = v[0] + " " +v[1] + "<br />"
            $("#results").append(txt);
           })
-          var editLink = $('<a href="#" data-role="button" id="edit" data-icon="edit" data-inline="true" data-iconpos="right">Edit</a>')
-                            .appendTo("#results")
-                            .attr('id', key)
-                            .addClass('linked');
-          var deleteLink = $("<a href='#' data-role='button' id='delete' data-icon='delete' data-inline='true' data-iconpos='right'>Delete</a>")
-                            .appendTo("#results")
-                            .attr('id', key)
-                            .addClass('linked');
-          $('.linked').buttonMarkup({
-            create: function(event, ui) {}
-          });
-          $("#results").listview("refresh");
+         $("#results").listview("refresh");
         }
+        makeLinks(localStorage.key(i))
       }
       
     }
     function editItem() {
       $("#edit").on('click', function(e) {
         e.preventDefault();
-        $.mobile.changePage()
-        var value = localStorage.getItem(this.key)
+       var value = localStorage.getItem(this.key)
         var item = JSON.parse(value);
         $.each(item, function(k, v) {
-        $(item).val($(this).item.v[1])
-         /*  $("#gig-select")val($(this).item.v[1])
-          $("#options")val($(this).item.v[1])
-          $("#date")val($(this).item.v[1])
-          $("#post")val($(this).item.v[1])
-          $("#details")val($(this).item.v[1])
-          $("#name")val($(this).item.v[1])
-          $("#email")val($(this).item.v[1])
-          $("#phone")val($(this).item.v[1]) */
-          })
+          $("#gig-select").val(v[1])
+          $("#options").val(v[1])
+          $("#date").val(v[1])
+          $("#post").val(v[1])
+          $("#details").val(v[1])
+          $("#name").val(v[1])
+          $("#email").val(v[1])
+          $("#phone").val(v[1]) 
+        })
       })
     }
+
+     
+    
+
     function deleteItem() {
       $("#delete").on('click', 'updatelayout', function(e) {
         e.preventDefault();
@@ -107,8 +99,24 @@ $("#addItem").on("pageinit",  function(){
           }
       })
     }
+    function makeLinks(key) {
+      var editLink = $('<a href="#" data-role="button" id="edit" data-mini="true" data-icon="edit" data-inline="true" data-iconpos="right">Edit</a>')
+                            .appendTo("#results")
+                            .attr('id', this.key)
+                            .addClass('linked');
+      editLink.key = key;
+          var deleteLink = $("<a href='#' data-role='button' id='delete' data-mini='true' data-icon='delete' data-inline='true' data-iconpos='right'>Delete</a>")
+                            .appendTo("#results")
+                            .attr('id', this.key)
+                            .addClass('linked');
+      deleteLink.key = key;
+          $('.linked').buttonMarkup({
+            create: function(event, ui) {}
+          });
+   
+    }    
+// Events
 
-    // Events
     
 
     $("#submit").on("click", function(e) {
@@ -133,12 +141,29 @@ $("#addItem").on("pageinit",  function(){
 
     $("#jsonData").on("click", function(e) {
         $.ajax({
-          url: 'xhr/gigs.json',
+          url: 'xhr/doc.json',
           type: 'GET',
           dataType: 'json',
          success: function(data, status) {
             console.log(status, data);
+            alert(" remote JSON Loaded, stored in local storage");
+            storeLocal()
+          },
+          error: function(error, parseerror) {  
+            console.log(error, parseerror);
+            }
+        });
 
+    });
+    $("#xmlData").on("click", function(e) {
+        $.ajax({
+          url: 'xhr/gigs.json',
+          type: 'GET',
+          dataType: 'xml',
+         success: function(data, status) {
+            console.log(status, data);
+            alert(" remote XML Loaded, stored in local storage");
+            storeLocal()
           },
           error: function(error, parseerror) {  
             console.log(error, parseerror);
