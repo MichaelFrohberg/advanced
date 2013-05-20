@@ -1,29 +1,14 @@
+
+$("browse").on("pageinit", function() {
+
+});
 $("#addItem").on("pageinit",  function(){
-	var myForm = $('#gig-form'); // creates a jquery object.
-/*  	myForm.validate({
-      invalidHandler: function (myForm, validator) {
-          var errors = validator.numberOfInvalids();
-          if (errors) {
-              var message = errors == 1 ? "You missed 1 field. It has been highlighted"
-              : "You missed " + errors + " fields. They have been highlighted";
-              $('div.error span').html(message).appendTo('.content');
-              $('div.error').show();
-          } else {
-              $('div.error').hide();
-          }
-      },
-      // if no errors return pure form
-      submitHandler: function () {
-      	console.log("Valid Code You may Proceed");
-	     });
-    }); 
-*/
-    function storeLocal(key ) {
-      if (!key) {
-        var id = Math.floor(Math.random()*1000001);
-      } else { 
-        id = key;
-      }
+
+    function storeData( ) {
+      var key = $('#submit').attr('data-role');
+      if ($.isNumeric(key) === false) {
+        var key = Math.floor(Math.random() * 100001);
+        }
       var item = {}
         item.paid = 	["Paid:", $("#paid").val()]; 
         item.kind = 	["Type", $("#gig-select").val()]; 
@@ -34,146 +19,147 @@ $("#addItem").on("pageinit",  function(){
         item.cName =	["Contact Name:", $("#name").val()];
         item.email = 	["Contact Email:", $("#email").val()];
         item.phone = 	["Contact Phone:", $("#phone").val()];
-        localStorage.setItem(id, JSON.stringify(item));
-        alert("Post Saved to local storage");
-    }
+        
+        localStorage.setItem(key, JSON.stringify(item));
+        alert("Post Saved to local storage")
+        $('#submit').removeAttr('data-role');
+        //location.reload(true);
+    };
+    $('#submit').on('click', storeData);
+    
+
+
     function autoFillData() {
       for (var n in json) {
         var id = Math.floor(Math.random() * 1000001);
         localStorage.setItem(id, JSON.stringify(json[n]));
-       
-     }
+      }
     }
     function displayLocal() {
       if (localStorage.length == 0) {
-        alert("You have nothing saved.")
-        autoFillData()
-      } else { 
-      for (var i = 0; i < localStorage.length; i++) {
-        $("#results").append("<ul data-role='listview' data-inset='true'></ul><li>");
-        var key = localStorage.key(i)
-        var value = localStorage.getItem(key)
-        var object = JSON.parse(value);
-        $.each(object, function(k, v) {
-           var txt = v[0] + " " +v[1] + "<br />"
-           $("#results").append(txt);
-          })
-         $("#results").listview("refresh");
-        }
-        makeLinks(localStorage.key(i))
+        alert("Nothing Stored...Demo gigs will be used.")
+        autoFillData();
       }
+      for (var i= 0, j=localStorage.length; i<j ; i++){
+            $("#results").append("<ul data-role='listview' data-inset='true'></ul><li>");
+            var key = localStorage.key(i);
+            var item = JSON.parse(localStorage.getItem(key));
+            $("<h3>"+item.post[1]+"</h3>"+
+                "<p>"+item.kind[1]+ " Gig" + "</p>"+
+                "<p>"+item.date[1]+"</p>" +
+                "<p>"+item.area[1]+"</p>" +
+                "<p>"+item.paid[1]+"</p>" +
+                "<p>"+item.details[1]+"</p>" +
+                "<p>"+item.cName[1]+" "+item.email[1]+" "+item.phone[1]+"</p>").appendTo("#results")
+                var editLink = $("<a href='#addItem' class='edit'>Edit</a>").appendTo("#results").attr('id', key)
+
+                var deleteLink = $("<a href='#' class='delete'>Delete</a>").appendTo("#results").attr('id', key);
+                editLink.on('click', editItem)
+                deleteLink.on('click', deleteItem)
+            } // end for loop
+      };
+      $("#display").on('click', displayLocal)
+
+      function clearLocal() {
+        confirm('Are you sure you wish to delete your entries');
+        localStorage.clear();
+        location.reload(true);
+      };
+      $('clear').on('click', clearLocal);
+
+      function deleteItem() {
+        var deleteKey = this.id;
+        localStorage.removeItem(this.id);
+        window.location.reload();
+      };
+      function byID(x) {
+        var elem = document.getElementById(x);
+        return elem;
+      };
       
-    }
-    function editItem() {
-      $("#edit").on('click', function(e) {
-        e.preventDefault();
-       var value = localStorage.getItem(this.key)
-        var item = JSON.parse(value);
-        $.each(item, function(k, v) {
-          $("#gig-select").val(v[1])
-          $("#options").val(v[1])
-          $("#date").val(v[1])
-          $("#post").val(v[1])
-          $("#details").val(v[1])
-          $("#name").val(v[1])
-          $("#email").val(v[1])
-          $("#phone").val(v[1]) 
-        })
-      })
-    }
-
-     
-    
-
-    function deleteItem() {
-      $("#delete").on('click', 'updatelayout', function(e) {
-        e.preventDefault();
-        var ask = confirm("Are you sure you want to delete?");
-        if(ask === true) {
-          localStorage.clear
-          alert("Entry Deleted")
-          window.location.reload();
-          } else {
-          alert ("Entry Not Deleted")
-         
-          }
-      })
-    }
-    function makeLinks(key) {
-      var editLink = $('<a href="#" data-role="button" id="edit" data-mini="true" data-icon="edit" data-inline="true" data-iconpos="right">Edit</a>')
-                            .appendTo("#results")
-                            .attr('id', this.key)
-                            .addClass('linked');
-      editLink.key = key;
-          var deleteLink = $("<a href='#' data-role='button' id='delete' data-mini='true' data-icon='delete' data-inline='true' data-iconpos='right'>Delete</a>")
-                            .appendTo("#results")
-                            .attr('id', this.key)
-                            .addClass('linked');
-      deleteLink.key = key;
-          $('.linked').buttonMarkup({
-            create: function(event, ui) {}
-          });
-   
-    }    
-// Events
-
-    
-
-    $("#submit").on("click", function(e) {
-        e.preventDefault()
-        storeLocal();
-
-    });
-    
-
-    $("#display").on("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        displayLocal();
-    });
-    
-    $("#clear").on("click", function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        clearLocal();
-    });
-
-
-    $("#jsonData").on("click", function(e) {
-        $.ajax({
-          url: 'xhr/doc.json',
-          type: 'GET',
-          dataType: 'json',
-         success: function(data, status) {
+      function editItem() {
+        window.location.reload();
+        var editKey = localStorage.getItem(this.id);
+        var item = JSON.parse(editKey);
+        byID('paid').value = item.paid[1]
+        byID('gig-select').value = item.kind[1]
+        byID('date').value = item.date[1]
+        byID('post').value = item.post[1]
+        byID('details').value = item.details[1]
+        byID('name').value = item.cName[1]
+        byID('email').value = item.email[1]
+        byID('phone').value = item.phone[1]
+        $('input:checked').val(item.area[1])
+       };
+        
+    $('#json').on('click', function () {
+    $.ajax({
+        url: "xhr/data.json",
+        type: "GET",
+        dataType: "json",
+        success: function (data, status) {
             console.log(status, data);
-            alert(" remote JSON Loaded, stored in local storage");
-            storeLocal()
-          },
-          error: function(error, parseerror) {  
-            console.log(error, parseerror);
-            }
-        });
+            console.log(data.item1.activity[1]);
+            console.log(data);
+            alert("JSON Data Loaded and Stored")
+            localStorage.clear();
+            var item = [
+                data.item1,
+                data.item2,
+                data.item3,
+                data.item4,
+                data.item5
+            ]
+            for (var i= 0, j=localStorage.length; i<j ; i++){
+            $("#results").append("<ul data-role='listview' data-inset='true'></ul><li>");
+            var key = localStorage.key(i);
+            var item = JSON.parse(localStorage.getItem(key));
+            $("<h3>"+item.post[1]+"</h3>"+
+                "<p>"+item.kind[1]+ " Gig" + "</p>"+
+                "<p>"+item.date[1]+"</p>" +
+                "<p>"+item.area[1]+"</p>" +
+                "<p>"+item.paid[1]+"</p>" +
+                "<p>"+item.details[1]+"</p>" +
+                "<p>"+item.cName[1]+" "+item.email[1]+" "+item.phone[1]+"</p>").appendTo("#results")
+                var editLink = $("<a href='#addItem' class='edit'>Edit</a>").appendTo("#results").attr('id', key)
 
+                var deleteLink = $("<a href='#' class='delete'>Delete</a>").appendTo("#results").attr('id', key);
+                editLink.on('click', editItem)
+                deleteLink.on('click', deleteItem);
+            } // end for loop
+        }
     });
-    $("#xmlData").on("click", function(e) {
-        $.ajax({
-          url: 'xhr/gigs.json',
-          type: 'GET',
-          dataType: 'xml',
-         success: function(data, status) {
-            console.log(status, data);
-            alert(" remote XML Loaded, stored in local storage");
-            storeLocal()
-          },
-          error: function(error, parseerror) {  
-            console.log(error, parseerror);
-            }
-        });
-
-    });
-
-
 });
-  	
- 
 
+$('#xmlData').on('click', function () {
+    console.log("XML data fired");
+    $.ajax({
+        url: "xhr/data.xml",
+        //        type : "GET",
+        dataType: "xml",
+        success: function (data, status) {
+            console.log(status, data);
+            for (i = 1; i <= $(data).find('activity').length; i++) {
+                var newItems = "item" + i;
+                console.log(newItems);
+                var items = {}
+
+                items.activity = ["activity", $(data).find(newItems + ">activity").text()];
+                items.date = ["date", $(data).find(newItems + ">date").text()];
+                items.cost = ["cost", $(data).find(newItems + ">cost").text()];
+                items.details = ["details", $(data).find(newItems + ">details").text()];
+                items.include = ["include", $(data).find(newItems + ">include").text()];
+
+                console.log(items);
+                var key = Math.floor(Math.random() * 100001);
+                localStorage.setItem(key, JSON.stringify(items));
+
+            }
+        },    
+       error: function (error, parseerror) {
+          console.log(error, parseerror);
+        }
+
+    });
+});
+});

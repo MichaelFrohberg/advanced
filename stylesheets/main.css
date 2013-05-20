@@ -1,7 +1,13 @@
 #gigpic {
-    margin: auto;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+		display: inline;
 	}
-#list {
+	.ui-listview-filter { border-width: 0; overflow: hidden; margin: 15px -15px -15px -15px;
+	}
+	 		
+	#list {
     margin-top: 40px;
 }
 #options, #text {
