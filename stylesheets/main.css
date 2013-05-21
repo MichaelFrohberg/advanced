@@ -1,20 +1,19 @@
-.actionCall {
-    background: url(images/gig.png);
-    margin-left: 40px;
-    margin-bottom: 40px;
-    width: auto;
-    height: auto;
-    padding: 0;
-    text-align:center;
+#gigpic {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
 		display: inline;
 	}
-#list {
+	.ui-listview-filter { border-width: 0; overflow: hidden; margin: 15px -15px -15px -15px;
+	}
+	 		
+	#list {
     margin-top: 40px;
 }
-#container {
-	border: 1px solid grey;
-	border-radius : 
-
+#options, #text {
+	border: 1px solid green;
+	border-radius : 10px;
+	margin: 10px 0 20px 0;
 }
 
    

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<json>
+<gigs1>
+<paid>Paid:</paid>
+<paid>yes</paid>
+<kind>Type of Gig:</kind>
+<kind>event</kind>
+<area>Area:</area>
+<area>brooklyn</area>
+<date>Start Date:</date>
+<date>4/21/2012</date>
+<post>Post Title:</post>
+<post>Shakespeare</post>
+<details>Details:</details>
+<details>To be, or not to be, that is the question</details>
+<cName>Contact Name:</cName>
+<cName>Michael</cName>
+<email>Contact Email:</email>
+<email>michaelfrohberg@me.com</email>
+<phone>Phone:</phone>
+<phone>347-525-4218</phone>
+</gigs1>
+<gigs2>
+<paid>Paid:</paid>
+<paid>no</paid>
+<kind>Type of Gig:</kind>
+<kind>talent</kind>
+<area>Area:</area>
+<area>bronx</area>
+<date>Start Date:</date>
+<date>8/30/2012</date>
+<post>Post Title:</post>
+<post>Weed</post>
+<details>Details:</details>
+<details>To be, or not to be, that is the question</details>
+<cName>Contact Name:</cName>
+<cName>Bernie Biggs</cName>
+<email>Contact Email:</email>
+<email>berniebiggs@me.com</email>
+<phone>Phone:</phone>
+<phone>213-525-4218</phone>
+</gigs2>
+<gigs3>
+<paid>Paid:</paid>
+<paid>yes</paid>
+<kind>Type of Gig:</kind>
+<kind>writing</kind>
+<area>Area:</area>
+<area>manhattan</area>
+<date>Start Date:</date>
+<date>3/12/2013</date>
+<post>Post Title:</post>
+<post>Kittens</post>
+<details>Details:</details>
+<details>To be, or not to be, that is the question</details>
+<cName>Contact Name:</cName>
+<cName>Michelle Anton</cName>
+<email>Contact Email:</email>
+<email>mookie@me.com</email>
+<phone>Phone:</phone>
+<phone>646-525-2134</phone>
+</gigs3>
+<gigs4>
+<paid>Paid:</paid>
+<paid>yes</paid>
+<kind>Type of Gig:</kind>
+<kind>crew</kind>
+<area>Area:</area>
+<area>queens</area>
+<date>Start Date:</date>
+<date>4/20/2012</date>
+<post>Post Title:</post>
+<post>A Thing From Brooklyn</post>
+<details>Details:</details>
+<details>To be, or not to be, that is the question</details>
+<cName>Contact Name:</cName>
+<cName>Mitch Fantastic</cName>
+<email>Contact Email:</email>
+<email>Heyyyyyyits@me.com</email>
+<phone>Phone:</phone>
+<phone>347-525-4218</phone>
+</gigs4>
+<gigs5>
+<paid>Paid:</paid>
+<paid>no</paid>
+<kind>Type of Gig:</kind>
+<kind>creative</kind>
+<area>Area:</area>
+<area>staten_island</area>
+<date>Start Date:</date>
+<date>1/20/2012</date>
+<post>Post Title:</post>
+<post>Heyyyyyy</post>
+<details>Details:</details>
+<details>To be, or not to be, that is the question</details>
+<cName>Contact Name:</cName>
+<cName>Sven</cName>
+<email>Contact Email:</email>
+<email>michaelfrohberg@me.com</email>
+<phone>Phone:</phone>
+<phone>347-525-4218</phone>
+</gigs5>
+</json>
+</xml>

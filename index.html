@@ -9,149 +9,170 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/jquery.mobile-1.3.1.css" />
+    <link rel="stylesheet" href="stylesheets/main.css" />
+    <!--Head Scripts -->
+    <script src="js/libs/jquery.js"></script>
+    <script src="xhr/doc.json"></script>
+    <script src="xhr/gigs.xml"></script>
+    <script src="js/json.js"></script>
 </head>
 <body>
-<section data-role="page" id="browse">
+  <section data-role="page" id="browse">
     <header data-role="header">
-        <h1>Gigs</h1>
+      <h1>Gigs</h1>
     </header>
     <article data-role="content">
-        <img class="actionCall" src="images/gig.png" alt="Gig Image"/>
-        <ul data-role="listview" id="list" data-inset="true" data-filter="true">
-            <li><a href="#">
-            <h2>Computer Gigs</h2>
-            <p>Small Web design, Tech support, etc projects</p>           
-            </a></li>
-            <li><a href="#">
-            <h2>Creative Gigs</h2>
-            <p>Small Design, Photography, Illustration Projects</p>           
-            </a></li>
-            <li><a href="#">
-            <h2>Crew Gigs</h2>
-            <p>Low budget Film/Theatre Opportunities </p>           
-            </a></li>            
-            <li><a href="#">
-            <h2>Event Gigs</h2>
-            <p>Promotions, Catering, Wedding Photography, etc</p>           
-            </a></li>
-            <li><a href="#">
-            <h2>Talent Gigs</h2>
-            <p>Acting, Modeling, Music, Dance, etc,</p>           
-            </a></li>
-            <li><a href="#">
-            <h2>Writing Gigs</h2>
-            <p>Includes Editing & Translation</p>           
-            </a></li>
-                    </ul>
+      <div id='gigpic'>
+        <a href="#browse"><img src="stylesheets/images/gig.png" alt="back to browse"/></a>
+      </div>
+      <ul data-role="listview" id="list" data-inset="true" data-filter="true">
+        <li><a href="#">
+        <h2>Computer Gigs</h2>
+        <p>Small Web design, Tech support, etc projects</p>           
+        </a></li>
+        <li><a href="#">
+        <h2>Creative Gigs</h2>
+        <p>Small Design, Photography, Illustration Projects</p>           
+        </a></li>
+        <li><a href="#">
+        <h2>Crew Gigs</h2>
+        <p>Low budget Film/Theatre Opportunities </p>           
+        </a></li>            
+        <li><a href="#">
+        <h2>Event Gigs</h2>
+        <p>Promotions, Catering, Wedding Photography, etc</p>           
+        </a></li>
+        <li><a href="#">
+        <h2>Talent Gigs</h2>
+        <p>Acting, Modeling, Music, Dance, etc,</p>           
+        </a></li>
+        <li><a href="#">
+        <h2>Writing Gigs</h2>
+        <p>Includes Editing & Translation</p>           
+        </a></li>
+      </ul>
     </article>
     <footer data-role="footer" data-position="fixed">
-        <nav data-role="navbar">
-            <ul>
-                <li><a href="#postGig">Post a Gig</a></li>
-                <li><a href="#">About Me</a></li>
-                <li><a href="#">Links</a></li>
-            </ul>
-        </nav>
+      <nav data-role="navbar">
+        <ul>
+          <li><a href="#addItem">Post a Gig</a></li>
+          <li><a href="#">About Me</a></li>
+          <li><a href="#">Links</a></li>
+        </ul>
+      </nav>
     </footer>
-</section>
-<section data-role="page" id="postGig">
-    <header data-role="header">
-    <a href="#" data-icon="delete">Clear</a>
-        <h1>Gigs</h1>
-     <a href="#" data-icon="bars">Display</a>
+  </section>
+  <section data-role="page" id="addItem">
+    <header data-role="header" data-position="fixed">
+      <a href="#" id="clear" data-icon="delete">Clear</a>
+      <h1>Gigs</h1>
+      <a href="#" id="display" data-icon="bars">Display</a>
     </header>
     <article data-role="content">
-        <a href="#browse">
-            <img class="actionCall" src="images/gig.png" alt="back to browse"/>
-        </a>
-        <form id="gigPosts" action="#">
-        	
-            <h2>Gig Details</h2>
-            <fieldset data-role="fieldcontain">
-                    <label for="paid">Paid Gig:</label>
-                    <select name="paid" id="paid" data-role="slider">
-                        <option value="no">No</option>
-                        <option value="yes">Yes</option>
-                    </select>
-             </fieldset>
-            
-            <fieldset data-role="fieldcontain">
-               <label for="gig-select" class="ui-hidden-accessible">Gig Type:</label>
-                <select name="gig-select" data-inline="true" data-native="true" id="gig-select">
-                    <option>Please choose a category:</option>
-                    <option value="music">Computer Gigs</option>
-                    <option value="write">Creative Gigs</option>
-                    <option value="photo">Crew Gigs</option>
-                    <option value="acting">Event Gigs</option>
-                    <option value="acting">Talent Gigs</option>
-                    <option value="acting">Writing Gigs</option>
-                </select>
-              </fieldset>
-              <fieldset data-role="fieldcontain">
-              	<div data-role="controlgroup" data-mini="true">
-                    <input type="radio" name="manhattan" id="manhattan" value="manhattan" checked="checked">
-                    <label for="manhattan">Manhattan</label>
-                    <input type="radio" name="brooklyn" id="brooklyn" value="brooklyn">
-                    <label for="brooklyn">Brooklyn</label>
-                    <input type="radio" name="queens" id="queens" value="queens">
-                    <label for="queens">Queens</label>
-                    <input type="radio" name="bronx" id="bronx" value="bronx">
-                    <label for="bronx">Bronx</label>
-                    <input type="radio" name="staten_island" id="staten_island" value="staten island">
-                    <label for="staten_island">Staten Island</label>
-                </div>
-              </fieldset>
-              
-              <fieldset data-role="fieldcontain">
-              	<p>Date:</p>              
-              	<label for="date" class="ui-hidden-accessible">Date:</label>
-                   <input type="date" data-clear-btn="true" name="date" id="date" value=""
-                   placeholder="mm/dd/yyyy">
-              </fieldset>
-              <fieldset data-role="fieldcontain">
-              	<p>Post Title:</p>  
-                <label for="post" class="ui-hidden-accessible"></label>
-                <input type="text" data-inline="true" name="post" id="post" placeholder="Please include a title for this post">
-               </fieldset>
-               <fieldset data-role="fieldcontain"> 
-               <p>Please provide the details</p>               
-               <label for="description" class="ui-hidden-accessible">Textarea:</label>
-                   <textarea cols="40" rows="8" name="decription" id="description" placeholder="Please describe the gig in detail"></textarea>
-               </fieldset>
-               <fieldset data-role="fieldcontain">
-               	<p>Your Name</p>  
-               	<label for="name" class="ui-hidden-accessible"></label>
-                <input type="text" data-inline="true" name="name" id="name" placeholder="Please include your name"/>
-                </fieldset>
-               <fieldset data-role="fieldcontain">
-               	<p>Your Email</p>  
-            		<label for="email" class="ui-hidden-accessible"></label>
-                <input type="email" data-inline="true" name="email" id="email" placeholder="Please include your email address"/>
-                </fieldset>
-                <fieldset data-role="fieldcontain">
-                	<p>Your Number</p>  
-                	<label for="phone" class="ui-hidden-accessible"></label>
-                 <input type="tel" data-inline="true" name="phone" id="phone" placeholder="(212) 555-1212"/>
-                 </fieldset>
-                
-              	
-              	 
-           
-        </form>
+      <div id='gigpic'>
+        <a href="#browse"><img src="stylesheets/images/gig.png" alt="back to browse"/></a>
+      </div>
+      <form id="gig-form" class="needsValid" action="#">
+        <h2>Gig Details</h2>
+        <div id="options">
+          <fieldset data-role="fieldcontain">
+            <label for="paid">Paid Gig:</label>
+            <select name="paid" id="paid" data-role="slider" data-mini="true">
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </fieldset>
+          <fieldset data-role="fieldcontain">
+            <label for="gig-select" class="ui-hidden-accessible">Gig Type:</label>
+            <select name="gig-select" data-inline="true" data-native="true" id="gig-select">
+              <option>Please choose a category:</option>
+              <option value="Computer">Computer Gigs</option>
+              <option value="Creative">Creative Gigs</option>
+              <option value="Crew">Crew Gigs</option>
+              <option value="Event">Event Gigs</option>
+              <option value="Talent">Talent Gigs</option>
+              <option value="Writing">Writing Gigs</option>
+            </select>
+          </fieldset>
+          <fieldset data-role="fieldcontain">
+            <div data-role="controlgroup" id="locale" data-mini="true">
+              <input type="radio" name="area" id="Manhattan" value="Manhattan">
+              <label for="Manhattan">Manhattan</label>
+              <input type="radio" name="area" id="Brooklyn" value="Brooklyn">
+              <label for="Brooklyn">Brooklyn</label>
+              <input type="radio" name="area" id="Queens" value="Queens">
+              <label for="Queens">Queens</label>
+              <input type="radio" name="area" id="Bronx" value="Bronx">
+              <label for="Bronx">Bronx</label>
+              <input type="radio" name="area" id="Staten Island" value="Staten Island">
+              <label for="Staten Island">Staten Island</label>
+            </div>
+          </fieldset>
+        </div>
+        <div id="text">
+          <fieldset data-role="fieldcontain">
+            <p>Date:</p>              
+            <label for="date" class="ui-hidden-accessible">Date:</label>
+            <input type="date" data-clear-btn="true" name="date" id="date" value="">
+          </fieldset>
+          <fieldset data-role="fieldcontain">
+            <p>Post Title:</p>  
+            <label for="post" class="ui-hidden-accessible"></label>
+            <input type="text" data-inline="true" name="post" id="post" placeholder="Please include a title for this post">
+          </fieldset>
+          <fieldset data-role="fieldcontain"> 
+            <p>Please provide the details</p>               
+            <label for="details" class="ui-hidden-accessible">Textarea:</label>
+            <textarea cols="40" rows="8" name="details" id="details" placeholder="Please describe the gig in detail"></textarea>
+          </fieldset>
+          <fieldset data-role="fieldcontain">
+            <p>Your Name</p>  
+            <label for="name" class="ui-hidden-accessible"></label>
+            <input type="text" data-inline="true" name="name" id="name" placeholder="Please include your name"/>
+          </fieldset>
+          <fieldset data-role="fieldcontain">
+            <p>Your Email</p>  
+            <label for="email" class="ui-hidden-accessible"></label>
+            <input type="email" data-inline="true" name="email" id="email" placeholder="Please include your email address"/>
+          </fieldset>
+          <fieldset data-role="fieldcontain">
+            <p>Your Number</p>  
+            <label for="phone" class="ui-hidden-accessible"></label>
+            <input type="tel" data-inline="true" name="phone" id="phone" placeholder="(212) 555-1212"/>
+          </fieldset>
+        </div> 
+        <div id="buttons">                
+          <p>
+            <input type="submit" data-inline="true" data-theme="b" id="submit" value="Submit Button" />
+            <input type="reset" data-inline="true" value="Reset">
+  				</p>
+          <p>
+            <a href="#" data-role="button" data-inline="true" id="jsonData">Display w/ JSON</a>
+            <a href="#" data-role="button" data-inline="true" id="xmlData">Display w/ XML</a>
+          </p> 
+        </div>
+        <div>
+         <ul data-role="listview" id="results"></ul>
+       </div>
+    </form>
     </article>
     <footer data-role="footer" data-position="fixed">
-        <nav data-role="navbar">
-            <ul>
-                <li> <a href="#browse">Find a Gig</a> </li>
-                <li> <a href="#">About Me</a> </li>
-                <li> <a href="#">Links</a> </li>
-            </ul>
-        </nav>
+      <nav data-role="navbar">
+        <ul>
+          <li><a href="#browse">Find a Gig</a></li>
+          <li><a href="#">About Me</a></li>
+          <li><a href="#">Links</a></li>
+        </ul>
+      </nav>
     </footer>
+<<<<<<< HEAD
 </section>
+=======
+  </section>
+  <script src="js/libs/jquery.mobile.js"></script>
+  <script src="js/libs/jquery.populate.js"></script>
+  <script src="js/main.js"></script>
+>>>>>>> master
 </body>
 </html>
