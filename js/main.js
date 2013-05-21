@@ -25,7 +25,10 @@ $("#addItem").on("pageinit",  function(){
         $('#submit').removeAttr('data-role');
         //location.reload(true);
     };
-    $('#submit').on('click', storeData);
+    $('#submit').on('click',function(e) {
+        e.preventDefault();
+        storeData()
+    });
     
 
 
